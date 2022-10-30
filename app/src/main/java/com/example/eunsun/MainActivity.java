@@ -6,9 +6,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String id = loginIdEditText.getText().toString();
                 String password = loginPasswordEditText.getText().toString();
-                String specialKey = "\\";
+                String specialKey = "\\\\";
 
                 // 1eunsun2020dmstjs20des!\esssun\01083928392\Kookmin Univsersity
                 // 1. "index" : index(int) 2. "index(int->String)": id 3. "id" : OneData(나머지 회원정보) 4. "currLoginId" : id
@@ -51,8 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 if(pref.getString(id,"").length()>=1){ // key : id로 가져온 값이 존재한다면 -> 회원가입한 회원이라면
                     // 비밀번호 검사
                     String prefOneData = pref.getString(id,"");
+                    Log.d("TEST1", "prefOneData: "+prefOneData);
                     String[] splitOnedata = prefOneData.split(specialKey);
-                    if(password==splitOnedata[0]){
+                    for(int i=0; i<splitOnedata.length; i++){
+                        Log.d("TEST", "splitOneData: "+i+" "+ splitOnedata[i]);
+                    }
+//                    Log.d("TEST2", "splitOneData[0]: "+splitOnedata[0]);
+//                    Log.d("TEST3", "splitOneData[1]: "+splitOnedata[1]);
+//                    Log.d("TEST4", "splitOneData[2]: "+splitOnedata[2]);
+                    if(splitOnedata[0].equals(password)){
                         editor.putString("currLoginId", id); //currLoginId 저장
                         editor.apply();
                         Intent intent = new Intent(MainActivity.this, ThirdActivity.class);

@@ -1,6 +1,7 @@
 package com.example.eunsun;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,11 @@ public class ThirdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
+
+        //프레퍼런스
+        SharedPreferences pref = getSharedPreferences("person_info", 0); // 프레퍼런스
+        SharedPreferences.Editor editor = pref.edit();
+
         init();
         getData();
 

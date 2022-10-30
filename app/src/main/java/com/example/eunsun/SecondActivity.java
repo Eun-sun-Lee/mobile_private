@@ -140,11 +140,11 @@ public class SecondActivity extends AppCompatActivity {
                 }
 
                 String id = idEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                String name = nameEditText.getText().toString();
-                String phoneNumber = phoneNumberEditText.getText().toString();
-                String address = addressEditText.getText().toString();
-                String specialKey = "\\";
+                String password = passwordEditText.getText().toString().trim();
+                String name = nameEditText.getText().toString().trim();
+                String phoneNumber = phoneNumberEditText.getText().toString().trim();
+                String address = addressEditText.getText().toString().trim();
+                String specialKey = "\\\\"; // special Key : \\
                 int prefIndex = pref.getInt("index",0);
                 Integer index = prefIndex+1;
                 editor.putInt("index",index); // "index" : 0,1,.... -> index -1부터 시작
