@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:id="@+id/logoImageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/loginIdEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/edittext_border"
+        android:hint="아이디"
+        android:textColor="@color/textColor"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/loginPasswordEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginIdEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_border"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:textColor="@color/textColor"
+        android:textSize="14sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/loginPasswordEditText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_border"
+        android:text="로그인"
+        android:backgroundTint="@color/backgroundColor"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="12sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edittext_border"
+        android:backgroundTint="@color/backgroundColor"
+        android:text="회원가입"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noSignButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edittext_border"
+        android:backgroundTint="@color/backgroundColor2"
+        android:text="회원가입 없이 앱 이용하기"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
