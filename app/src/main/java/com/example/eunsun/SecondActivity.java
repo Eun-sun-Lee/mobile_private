@@ -108,7 +108,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) { // 가입하기 버튼 누를시
                 if(idEditText.getText().toString().length()<=7){
                     Toast.makeText(SecondActivity.this, "아이디를 올바르게 입력하세요(최소 8자 이상).", Toast.LENGTH_SHORT).show();
-                    idEditText.requestFocus(); //        preference(index)      index-id        id-s나머지 회원정보 "string으로 묶어서 "
+                    idEditText.requestFocus(); // 1. "index" : index(int) 2. "index(int->String)": "id" 3. "id" : "OneData(나머지 회원정보)"
                     return;
                 }
                 String idCheck = idEditText.getText().toString();
@@ -145,20 +145,20 @@ public class SecondActivity extends AppCompatActivity {
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String address = addressEditText.getText().toString();
                 String specialKey = "\\";
-
-                int prefIndex = pref.getInt("index",-1);
+                int prefIndex = pref.getInt("index",0);
                 Integer index = prefIndex+1;
-                editor.putInt("index",index); // "index" : -1,0,1,.... -> index -1부터 시작
+                editor.putInt("index",index); // "index" : 0,1,.... -> index -1부터 시작
                 editor.putString(index.toString(),id); // "0" : "eunsun","minsuk",....
                 String oneData = String.join(specialKey, password, name, phoneNumber, address);
                 editor.putString(id,oneData);
                 editor.apply();
 
-                Integer prefIdx = pref.getInt("index",-1);
+                Integer prefIdx = pref.getInt("index",0);
                 String prefId = pref.getString(prefIdx.toString(),"");
                 String prefOneData = pref.getString(prefId,"");
 
-                Log.d("TAG","pref: "+prefIdx+prefId+prefOneData); // pref: 0eunsun20802dmstjs22!\leeeee\024970805\Seoul gundae
+                Log.d("TAG","pref: "+prefIdx+prefId+prefOneData); // pref: 0eunsun2080dmstjs415834!\eunsun\01064858365\Seoul gundae
+                // 1eunsun2020dmstjs20des!\esssun\01083928392\Kookmin Univsersity
 
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity(intent);
