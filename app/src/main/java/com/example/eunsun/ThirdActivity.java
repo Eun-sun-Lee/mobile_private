@@ -1,5 +1,6 @@
 package com.example.eunsun;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,9 +45,24 @@ public class ThirdActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else{
-                    Intent intent = new Intent(ThirdActivity.this, SecondActivity.class); // 회원가입 페이지
-                    startActivity(intent);
-                    finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ThirdActivity.this);
+                    builder.setTitle("회원가입 하시겠습니까?");
+                    builder.setMessage("로그인이 필요한 기능입니다.");
+                    builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(ThirdActivity.this, SecondActivity.class); // 회원가입 페이지
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.create().show();
                 }
             }
         });
