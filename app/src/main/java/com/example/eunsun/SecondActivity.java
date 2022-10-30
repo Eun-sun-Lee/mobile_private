@@ -100,7 +100,14 @@ public class SecondActivity extends AppCompatActivity {
         privateTextView.setMovementMethod(new ScrollingMovementMethod());
         privateTextView2.setMovementMethod(new ScrollingMovementMethod());
 
-        backImageButton.setOnClickListener(view -> onBackPressed()); // 뒤로 가기 버튼 누를시
+        backImageButton.setOnClickListener(new View.OnClickListener() { // 뒤로가기 버튼 누를시
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         signButton.setOnClickListener(new View.OnClickListener() { // 가입하기 버튼 누를시
 
