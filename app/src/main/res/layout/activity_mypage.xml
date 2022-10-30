@@ -28,8 +28,8 @@
 
     <ImageView
         android:id="@+id/infoImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:background="@color/lightGray"
@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/myIdTextView"
-        android:layout_width="80dp"
+        android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
