@@ -27,6 +27,9 @@ public class ThirdActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("person_info", 0); // 프레퍼런스
         SharedPreferences.Editor editor = pref.edit();
 
+        Intent intent = getIntent();
+        boolean isLogined = intent.getBooleanExtra("isLogined",false);
+
         init();
         getData();
 
@@ -35,9 +38,15 @@ public class ThirdActivity extends AppCompatActivity {
         mypageImageButton.setOnClickListener(new View.OnClickListener() { // 마이페이지 버튼 누를시
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (isLogined==true){
+                    Intent intent = new Intent(ThirdActivity.this, MyPageActivity.class); // 회원정보 페이지
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Intent intent = new Intent(ThirdActivity.this, SecondActivity.class); // 회원가입 페이지
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }

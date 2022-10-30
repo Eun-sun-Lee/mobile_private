@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("currLoginId", id); //currLoginId 저장
                         editor.apply();
                         Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                        intent.putExtra("isLogined",true);
                         startActivity(intent);
                         finish();
                     } else{
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                intent.putExtra("isLogined", false);
                 startActivity(intent);
                 finish();
             }
