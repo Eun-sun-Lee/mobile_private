@@ -12,4 +12,5 @@
     <color name="backgroundColor2">#D8DDFF</color>
     <color name="red">#FF0000</color>
     <color name="gray">#B5B6B6</color>
+    <color name="lightGray">#DFDFDF</color>
 </resources>
