@@ -112,10 +112,11 @@
 
     <TextView
         android:id="@+id/myAddressTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="내 주소"
         android:textSize="16sp"
         android:textStyle="bold"
