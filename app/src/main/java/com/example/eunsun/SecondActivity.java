@@ -109,20 +109,6 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-//        privateRadioButton.setOnClickListener(new View.OnClickListener() { // Radio Button toggle
-//            @Override
-//            public void onClick(View v) {
-//                privateRadioButton.setChecked(!(privateRadioButton.isChecked()));
-//            }
-//        });
-//
-//        privateRadioButton2.setOnClickListener(new View.OnClickListener() { // Radio Button2 toggle
-//            @Override
-//            public void onClick(View v) {
-//                privateRadioButton2.setChecked(!(privateRadioButton2.isChecked()));
-//            }
-//        });
-
         signButton.setOnClickListener(new View.OnClickListener() { // 가입하기 버튼 누를시
 
             @Override
