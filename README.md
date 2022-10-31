@@ -45,19 +45,65 @@ defaultConfig {
   *  입력된 id를 키로 하여 프레퍼런스에서 가져온 값이 비어있다면(회원가입하지 않은 회원이라면) Toast로 _아이디 또는 비밀번호를 확인해주세요._ 메세지 띄우기
 
 - signButton(회원가입 버튼) 클릭시 처리 : 
-  * MainActivity에서 SecondActivity(회원가입 화면)로 intent 넘기기
+  * MainActivity(로그인 화면)에서 SecondActivity(회원가입 화면)로 intent 넘기기
 
 - noSignButton(회원가입 없이 앱 이용하기 버튼) 클릭시 처리 : 
   * 현재 앱에 로그인이 돼있지 않다는 boolean 정보("isLogined", false)를 intent로 ThirdActivity(상품 리스트 화면)에 넘긴다.
 
+### 2. 두번째 화면 <회원가입> : SecondActivity / activity_second (Linear Layout 사용) -> 구현 완료 
+<img width="253" alt="image" src="https://user-images.githubusercontent.com/84428520/199054363-755aca70-31f8-4a10-8588-8198dcc72e36.png">
+<img width="251" alt="image" src="https://user-images.githubusercontent.com/84428520/199054514-e9bd312f-3993-4a4f-b013-bd03e1af464b.png">
+<img width="249" alt="image" src="https://user-images.githubusercontent.com/84428520/199054587-1a066626-3976-406c-9257-1c0a398bdc00.png">
+
+### activity_second
+#### backImageButton, signTextView, idTextView, idEditText, idCheckTextView, passwordTextView, passwordEditText, passwordCheckTextView, passwordTextView2, passwordEditText2, passwordCheckTextView2, nameTextView, nameEditText, phoneNumberTextView, phoneNumberEditText, addressTextView, addressEditText, privateRadioButton, privateTextView, privateRadioButton2, privateTextView2, signButton
+- ScrollView 사용
+- backImageButton : 뒤로 가기 버튼 [ImageButton]
+- signTextView : 상단 "회원가입" 텍스트 [TextView]
+- idTextView : "아이디" 텍스트 [TextView]
+- idEditText : 아이디 입력 칸 [EditText]
+- idCheckTextView : "이미 존재하는 아이디입니다." 텍스트 [TextView]
+- passwordTextView : "비밀번호" 텍스트 [TextView]
+- passwordEditText : 비밀번호 입력 칸 [EditText]
+- passwordCheckTextView : "영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)" 텍스트
+- passwordTextView2 : "비밀번호 재확인" 텍스트 [TextView]
+- passwordEditText2 : 비밀번호 재확인 입력 칸 [EditText]
+- passwordCheckTextView2 : "비밀번호가 일치하지 않습니다." 텍스트
+- nameTextView : "이름" 텍스트 [TextView]
+- nameEditText : 이름 입력 칸 [EditText]
+- phoneNumberTextView : "전화번호" 텍스트 [TextView]
+- phoneNumberEditText : 전화번호 입력 칸 [EditText]
+- addressTextView : "주소" 텍스트 [TextView]
+- addressEditText : 주소 입력 칸 [EditText]
+- privateRadioButton : "이용약관 동의" 라디오 버튼 [RadioButton]
+- privateTextView : _이용약관_에 해당하는 자세한 텍스트 내용 [TextView]
+- privateRadioButton2 : "개인정보 수집 및 이용 동의" 라디오 버튼 [RadioButton]
+- privateTextView2 : _개인정보 수집 및 이용_에 해당하는 자세한 텍스트 내용 [TextView]
+- signButton : 가입하기 버튼 [AppCompatButton]
+
+### SecondActivity
+- 두번째 화면 초기화시에 **프레퍼런스**를 통해 기존에 저장된 개인정보 읽어옴.
+- addTextChangedListener와 TextWatcher를 사용하여 아이디/비밀번호/비밀번호 재확인 editText 입력값 변화에 따른 이벤트를 처리해줌.
+  * 입력된 비밀번호와 비밀번호 재확인이 같지 않다면 passwordCheckTextView2(_비밀번호가 일치하지 않습니다._) setVisiblity(View.VISIBLE)
+  * 입력된 비밀번호와 비밀번호 재확인이 같다면 passwordCheckTextView2(_비밀번호가 일치하지 않습니다._) setVisiblity(View.INVISIBLE)
+  * 입력된 비밀번호가 특수키 등 규칙에 맞지 않거나 비밀번호 자릿수가 7자 이하 혹은 17자 이상이라면 passwordCheckTextView(_영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)_) setVisibility(View.VISIBLE)
+  * 입력된 비밀번호가 자릿수/특수키 등 규칙에 모두 부합한다면 passwordCheckTextView(_영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)_) setVisibility(View.INVISIBLE)
+  ```
+  비밀번호 특수키 규칙 : 영문, 숫자, 특수문자를 모두 포함해야함.
+  String passwordValidation = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$";
+  ```
+- backImageButton(뒤로 가기 버튼) 클릭시 처리 : 
+  * SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
+  
+- signButton(회원가입 버튼) 클릭시 처리 : 
+
+
 
   
-- 
-- ID, 비밀번호 입력 시 기존에 가입한 회원 ID, 비밀번호 체크 오류 시 에러 메시지 출력
-- ID, 비밀번호 입력이 정상이고 로그인 버튼 클릭 시 세번째 페이지 이동
-- 회원가입 없이도 메인 버튼(상품 출력 페이지)을 클릭하면 세번째 화면으로 이동 가능 
 
-2. 두번째 화면 (Linear Layout 혹은 Fragment 사용) - 5점
+
+
+
 - 회원가입 페이지, 첫번째 페이지에서 회원가입 버튼 클릭 시 출력
 - ID(EditView, 중복검사), 비밀번호(EditView, 자릿수/특수키 등 규칙 체크)
 - 이름/전화번호/주소(EditView)
