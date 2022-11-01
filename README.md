@@ -53,7 +53,7 @@ defaultConfig {
 ### 2. 두번째 화면 <회원가입> : SecondActivity / activity_second (Linear Layout 사용) -> 구현 완료 
 <img width="253" alt="image" src="https://user-images.githubusercontent.com/84428520/199054363-755aca70-31f8-4a10-8588-8198dcc72e36.png">
 <img width="251" alt="image" src="https://user-images.githubusercontent.com/84428520/199054514-e9bd312f-3993-4a4f-b013-bd03e1af464b.png">
-<img width="249" alt="image" src="https://user-images.githubusercontent.com/84428520/199054587-1a066626-3976-406c-9257-1c0a398bdc00.png">
+<img width="241" alt="image" src="https://user-images.githubusercontent.com/84428520/199215918-82f5c054-3ae0-4902-ad13-19938fd9a398.png">
 
 ### activity_second
 #### backImageButton, signTextView, idTextView, idEditText, idCheckTextView, passwordTextView, passwordEditText, passwordCheckTextView, passwordTextView2, passwordEditText2, passwordCheckTextView2, nameTextView, nameEditText, phoneNumberTextView, phoneNumberEditText, addressTextView, addressEditText, privateRadioButton, privateTextView, privateRadioButton2, privateTextView2, signButton
@@ -96,20 +96,22 @@ defaultConfig {
   * SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
   
 - signButton(회원가입 버튼) 클릭시 처리 : 
--   * 입력된 아이디의 길이가 7자 이하라면 Toast로 _아이디를 올바르게 입력하세요(최소 8자 이상)._ 메세지 띄우고 아이디 입력 칸 focus
--   * 만약 입력된 id를 키로 하여 프레퍼런스에서 가져온 값이 비어있지 않다면(입력된 id가 이미 존재하는 아이디라면) Toast로 _이미 존재하는 아이디입니다._ 메세지 띄우고 idCheckTextView setVisibility(View.VISIBLE) 
--   * 입력된 비밀번호의 길이가 7자 이하이거나 17자 이상, 혹은 비밀번호 특수키 등 규칙에 맞지 않는다면 Toast로 _영문, 숫자, 특수문자를 포함해서 비밀번호를 올바르게 입력하세요(8자-16자)._ 메세지 띄우고 비밀번호 입력 칸 focus
--   * 입력된 비밀번호 재확인의 길이가 7자 이하이거나 17자 이상이라면 Toast로 _비밀번호 재확인이 필요합니다._ 메세지 띄우고 비밀번호 재확인 입력 칸 focus
--   * 이름 입력 칸이 비어있거나 입력된 전화번호의 길이가 6자 이하이거나, 혹은 입력된 주소의 길이가 5자 이하라면 Toast로 _이름, 전화번호, 주소를 모두 입력해야 합니다._ 메세지 띄우기
--   * 이용약관 동의 라디오 버튼이나 개인정보 수집 및 이용 동의 라디오 버튼이 체크 되어있지 않다면 Toast로 _이용약관과 개인정보 수집 및 이용에 대해 모두 동의해주세요._ 메세지 띄우기
--   * 회원가입 조건에 모두 부합한다면 회원정보를 다음과 같은 방식으로 프레퍼런스에 저장
+  * 입력된 아이디의 길이가 7자 이하라면 Toast로 _아이디를 올바르게 입력하세요(최소 8자 이상)._ 메세지 띄우고 아이디 입력 칸 focus
+  * 만약 입력된 id를 키로 하여 프레퍼런스에서 가져온 값이 비어있지 않다면(입력된 id가 이미 존재하는 아이디라면) Toast로 _이미 존재하는 아이디입니다._ 메세지 띄우고 idCheckTextView setVisibility(View.VISIBLE) 
+  * 입력된 비밀번호의 길이가 7자 이하이거나 17자 이상, 혹은 비밀번호 특수키 등 규칙에 맞지 않는다면 Toast로 _영문, 숫자, 특수문자를 포함해서 비밀번호를 올바르게 입력하세요(8자-16자)._ 메세지 띄우고 비밀번호 입력 칸 focus
+  * 입력된 비밀번호 재확인의 길이가 7자 이하이거나 17자 이상이라면 Toast로 _비밀번호 재확인이 필요합니다._ 메세지 띄우고 비밀번호 재확인 입력 칸 focus
+  * 이름 입력 칸이 비어있거나 입력된 전화번호의 길이가 6자 이하이거나, 혹은 입력된 주소의 길이가 5자 이하라면 Toast로 _이름, 전화번호, 주소를 모두 입력해야 합니다._ 메세지 띄우기
+  * 이용약관 동의 라디오 버튼이나 개인정보 수집 및 이용 동의 라디오 버튼이 체크 되어있지 않다면 Toast로 _이용약관과 개인정보 수집 및 이용에 대해 모두 동의해주세요._ 메세지 띄우기
+  * 회원가입 조건에 모두 부합한다면 회원정보를 다음과 같은 방식으로 프레퍼런스에 저장
     ```  
     1. "index" : index(int형, default: 0) --> id를 프레퍼런스에 저장할때, 먼저 index 값을 불러온 후 1을 증가시켜준다.
     2. "index(int->String)" : id
     3. "id" : OneData(비밀번호\\이름\\전화번호\\주소)
        OneData 저장 예) dmstjsdmstjs2!\\Eun-sun-Lee\\01034569432\\Seoul Hongdae Hyundae Apartment
     + "currLoginId" : id --> 현재 로그인된 회원 id를 저장하기 위해 MainActivity에서 처리
-
+    ```
+    
+    ```
         String specialKey = "\\\\"; 
         int prefIndex = pref.getInt("index",0);
         Integer index = prefIndex+1;
@@ -119,9 +121,39 @@ defaultConfig {
         editor.putString(id,oneData);
         editor.apply();
      ```  
- -   * 프레퍼런스에 회원정보 저장하고 SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
+- 프레퍼런스에 회원정보 저장하고 SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
  
+ ### 3. 세번째 화면 <상품 리스트> : ThirdActivity / activity_third (Constraint Layout 사용) -> 구현 완료 
+ <img width="238" alt="image" src="https://user-images.githubusercontent.com/84428520/199215335-39a3f184-0b57-4bf7-82a7-210e5f9b5516.png">
+<img width="235" alt="image" src="https://user-images.githubusercontent.com/84428520/199215422-1d41e8d0-3eeb-4aeb-8540-3abd17066e41.png">
+
  ### activity_third
+ #### wishlistImageView, downImageView, productRecyclerView, pdRegisterButton, pdDeleteButton, mypageImageButton
+ - ScrollView 
+ - wishlistImageView : wishlist 로고 이미지를 나타냄. [ImageView]
+ - downImageView : 아래 방향 화살표 이미지를 나타냄. [ImageView]
+ - productRecyclerView : 상품명과 상품 이미지를 동적 목록으로 관리 [RecyclerView]
+ - pdRegisterButton : 상품 등록하기 버튼 [AppCompatButton]
+ - pdDeleteButton : 상품 삭제하기 버튼 [AppCompatButton]
+ - mypageImageButton : 마이페이지 버튼 [ImageButton]
+
+
+### ThirdActivity
+- 세번째 화면 초기화시에 **프레퍼런스**를 통해 기존에 저장된 개인정보 읽어옴.
+- getExtra()를 통해 앱의 로그인 여부를 나타내는 boolean 정보("isLogined")를 intent로 받아온다. 
+- RecyclerView 객체와 productAdapter를 연결해준다.
+- productAdapter에 Product 타입의 데이터를 addItem()을 통해 넣어준다. 
+- mypageImageButton(마이페이지 버튼) 클릭시 처리 : 
+  * intent로 받아온 "isLogined" 값이 true라면 ThirdActivity(상품 리스트 화면)에서 MyPageActivity(마이페이지 화면)으로 intent 넘기기
+  * intent로 받아온 "isLogined" 값이 false라면 AlertDialog(_회원가입 하시겠습니까?_) 띄우기
+      * 사용자가 _예_ 버튼 클릭 시 ThirdActivity(상품 리스트 화면)에서 SecondActivity(회원가입 화면)으로 intent 넘기기
+      * 사용자가 _아니요_ 버튼 클릭 시 dialog.cancel()을 통해 AlertDialog 취소하기
+
+
+
+
+ 
+ 
  
     
 
@@ -136,12 +168,8 @@ defaultConfig {
 
     
 
-3. 세번째 화면 (Constraint Layout, Table Layout, Grid Layout, Frame Layout 중 하나 사용) - 5점
-- 상품명, 상품이미지 리스트를 보여주는 화면 (5개이상 이미지를 기본으로 출력)
-  (선택) 화면 아래 부분에서 상품명, 상품이미지를 등록 및 삭제하는 버튼 추가
-- 화면 아래 부분에 회원정보 버튼은 회원인 경우는 가입한 회원 정보를 보여주고
-  회원이 아닌 경우는 회원정보 버튼을 클릭하면 회원가입 여부를 물어보고
-  원하면 회원가입 페이지인 두번째 화면으로 이동 (유저관리 - 5점)
+
+
 - View을 상속한 여러가지 위젯을 사용하여 화면을 구성(기능에 맞는 위젯 선택하여 구성)
   View Group을 상속한 위젯 ListView, GridView, AdapterView, ToolBar 등
   Text View을 상속한 CheckBox, Switch, ToggleButton, RadioButton 등
