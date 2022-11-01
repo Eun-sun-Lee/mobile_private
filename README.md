@@ -96,6 +96,34 @@ defaultConfig {
   * SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
   
 - signButton(회원가입 버튼) 클릭시 처리 : 
+-   * 입력된 아이디의 길이가 7자 이하라면 Toast로 _아이디를 올바르게 입력하세요(최소 8자 이상)._ 메세지 띄우고 아이디 입력 칸 focus
+-   * 만약 입력된 id를 키로 하여 프레퍼런스에서 가져온 값이 비어있지 않다면(입력된 id가 이미 존재하는 아이디라면) Toast로 _이미 존재하는 아이디입니다._ 메세지 띄우고 idCheckTextView setVisibility(View.VISIBLE) 
+-   * 입력된 비밀번호의 길이가 7자 이하이거나 17자 이상, 혹은 비밀번호 특수키 등 규칙에 맞지 않는다면 Toast로 _영문, 숫자, 특수문자를 포함해서 비밀번호를 올바르게 입력하세요(8자-16자)._ 메세지 띄우고 비밀번호 입력 칸 focus
+-   * 입력된 비밀번호 재확인의 길이가 7자 이하이거나 17자 이상이라면 Toast로 _비밀번호 재확인이 필요합니다._ 메세지 띄우고 비밀번호 재확인 입력 칸 focus
+-   * 이름 입력 칸이 비어있거나 입력된 전화번호의 길이가 6자 이하이거나, 혹은 입력된 주소의 길이가 5자 이하라면 Toast로 _이름, 전화번호, 주소를 모두 입력해야 합니다._ 메세지 띄우기
+-   * 이용약관 동의 라디오 버튼이나 개인정보 수집 및 이용 동의 라디오 버튼이 체크 되어있지 않다면 Toast로 _이용약관과 개인정보 수집 및 이용에 대해 모두 동의해주세요._ 메세지 띄우기
+-   * 회원가입 조건에 모두 부합한다면 회원정보를 다음과 같은 방식으로 프레퍼런스에 저장
+    ```  
+    1. "index" : index(int형, default: 0) --> id를 프레퍼런스에 저장할때, 먼저 index 값을 불러온 후 1을 증가시켜준다.
+    2. "index(int->String)" : id
+    3. "id" : OneData(비밀번호\\이름\\전화번호\\주소)
+       OneData 저장 예) dmstjsdmstjs2!\\Eun-sun-Lee\\01034569432\\Seoul Hongdae Hyundae Apartment
+    + "currLoginId" : id --> 현재 로그인된 회원 id를 저장하기 위해 MainActivity에서 처리
+
+        String specialKey = "\\\\"; 
+        int prefIndex = pref.getInt("index",0);
+        Integer index = prefIndex+1;
+        editor.putInt("index",index); // "index" : 0,1,.... 
+        editor.putString(index.toString(),id); // "0" : "eunsun208080", "1: "minsuk12",...
+        String oneData = String.join(specialKey, password, name, phoneNumber, address);
+        editor.putString(id,oneData);
+        editor.apply();
+     ```  
+ -   * 프레퍼런스에 회원정보 저장하고 SecondActivity(회원가입 화면)에서 MainActivity(로그인 화면)로 intent 넘기기
+ 
+ ### activity_third
+ 
+    
 
 
 
@@ -104,12 +132,9 @@ defaultConfig {
 
 
 
-- 회원가입 페이지, 첫번째 페이지에서 회원가입 버튼 클릭 시 출력
-- ID(EditView, 중복검사), 비밀번호(EditView, 자릿수/특수키 등 규칙 체크)
-- 이름/전화번호/주소(EditView)
-- 개인정보 사용 동의 간략 약관(TextView), 동의 여부(Radio Button, Decline/Accept)
-- 회원정보를 저장하고 첫번째 페이지로 이동 
-  회원정보 저장은 전역변수, 프레퍼런스(Preference), 파일 중에 하나를 선택하여 활용  
+
+
+    
 
 3. 세번째 화면 (Constraint Layout, Table Layout, Grid Layout, Frame Layout 중 하나 사용) - 5점
 - 상품명, 상품이미지 리스트를 보여주는 화면 (5개이상 이미지를 기본으로 출력)
