@@ -149,7 +149,7 @@ defaultConfig {
       * 사용자가 _아니요_ 버튼 클릭 시 dialog.cancel()을 통해 AlertDialog 취소하기
   
 ### 4. 회원 정보 화면 <마이 페이지> : MyPageActivity / activity_mypage (Constraint Layout 사용) -> 구현 완료 
-<img width="238" alt="image" src="https://user-images.githubusercontent.com/84428520/199230295-015d295e-b798-46d0-a5a5-efddbfced636.png">
+<img width="244" alt="image" src="https://user-images.githubusercontent.com/84428520/199242705-713a9607-4e90-4f5e-8a42-f85199acea77.png">
 
 ### activity_mypage
 #### backImageButton, infoTextView, infoImageView, myIdTextView, infoNameTextView, myNameTextView, infoPhoneNumberTextView, myPhoneNumberTextView, infoAddressTextView, myAddressTextView
