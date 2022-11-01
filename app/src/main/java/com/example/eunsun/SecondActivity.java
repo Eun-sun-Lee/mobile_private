@@ -154,8 +154,8 @@ public class SecondActivity extends AppCompatActivity {
                 String specialKey = "\\\\"; // special Key : \\
                 int prefIndex = pref.getInt("index",0);
                 Integer index = prefIndex+1;
-                editor.putInt("index",index); // "index" : 0,1,.... -> index -1부터 시작
-                editor.putString(index.toString(),id); // "0" : "eunsun","minsuk",....
+                editor.putInt("index",index); // "index" : 1,2.... -> index 1부터 시작
+                editor.putString(index.toString(),id); // "1" : "eunsun208080","2": "minsuk12",....
                 String oneData = String.join(specialKey, password, name, phoneNumber, address);
                 editor.putString(id,oneData);
                 editor.apply();
@@ -164,8 +164,8 @@ public class SecondActivity extends AppCompatActivity {
                 String prefId = pref.getString(prefIdx.toString(),"");
                 String prefOneData = pref.getString(prefId,"");
 
-                Log.d("TAG","pref: "+prefIdx+prefId+prefOneData); // pref: 0eunsun2080dmstjs415834!\eunsun\01064858365\Seoul gundae
-                // 1eunsun2020dmstjs20des!\esssun\01083928392\Kookmin Univsersity
+                Log.d("TAG","pref: "+prefIdx+prefId+prefOneData); // pref: 1eunsun2080dmstjs415834!\eunsun\01064858365\Seoul gundae
+                // 2eunsun2020dmstjs20des!\esssun\01083928392\Kookmin Univsersity
 
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -175,7 +175,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private boolean checkPassword(EditText passwordEditText){
-        String passwordValidation = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$";
+        String passwordValidation = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{7,15}.$";
         String password = passwordEditText.getText().toString().trim();
         if (password.matches(passwordValidation)){
             return true;

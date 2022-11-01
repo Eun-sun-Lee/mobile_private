@@ -212,7 +212,6 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="@drawable/textview_border"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:scrollbarDefaultDelayBeforeFade="500000"
                 android:scrollbarFadeDuration="0"
                 android:scrollbarSize="2dp"

@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private boolean checkPassword(EditText passwordEditText){
-        String passwordValidation = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$";
+        String passwordValidation = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{7,15}.$";
         String password = passwordEditText.getText().toString().trim();
         if (password.matches(passwordValidation)){
             return true;
