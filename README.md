@@ -137,7 +137,6 @@ defaultConfig {
  - pdDeleteButton : 상품 삭제하기 버튼 [AppCompatButton]
  - mypageImageButton : 마이페이지 버튼 [ImageButton]
 
-
 ### ThirdActivity
 - 세번째 화면 초기화시에 **프레퍼런스**를 통해 기존에 저장된 개인정보 읽어옴.
 - getExtra()를 통해 앱의 로그인 여부를 나타내는 boolean 정보("isLogined")를 intent로 받아온다. 
@@ -148,39 +147,33 @@ defaultConfig {
   * intent로 받아온 "isLogined" 값이 false라면 AlertDialog(_회원가입 하시겠습니까?_) 띄우기
       * 사용자가 _예_ 버튼 클릭 시 ThirdActivity(상품 리스트 화면)에서 SecondActivity(회원가입 화면)으로 intent 넘기기
       * 사용자가 _아니요_ 버튼 클릭 시 dialog.cancel()을 통해 AlertDialog 취소하기
-
-
-
-
- 
- 
- 
-    
-
-
-
   
+### 4. 회원 정보 화면 <마이 페이지> : MyPageActivity / activity_mypage (Constraint Layout 사용) -> 구현 완료 
+<img width="238" alt="image" src="https://user-images.githubusercontent.com/84428520/199230295-015d295e-b798-46d0-a5a5-efddbfced636.png">
 
+### activity_mypage
+#### backImageButton, infoTextView, infoImageView, myIdTextView, infoNameTextView, myNameTextView, infoPhoneNumberTextView, myPhoneNumberTextView, infoAddressTextView, myAddressTextView
+  - backImageButton : 뒤로 가기 버튼 [ImageButton]
+  - infoTextView : 상단 "내 정보" 텍스트 [TextView]
+  - infoImageView : 사람 모양 Vector Asset [ImageView]
+  - myIdTextView : 내 아이디 [TextView]
+  - infoNameTextView : "이름" 텍스트 [TextView]
+  - myNameTextView : 내 이름 [TextView]
+  - infoPhoneNumberTextView : "전화번호" 텍스트 [TextView]
+  - myPhoneNumberTextView : 내 전화번호 [TextView]
+  - infoAddressTextView : "주소" 텍스트 [TextView]
+  - myAddressTextView : 내 주소 [TextView]
 
+### MyPageActivity
+- 마이페이지 화면 초기화시에 **프레퍼런스**를 통해 기존에 저장된 개인정보 읽어옴.
+- 프레퍼런스에서 "currLoginId"를 키로 하여 현재 로그인 된 회원 id를 받아온다.
+- 프레퍼런스에서 현재 로그인 된 회원 id를 키로 하여 그 회원의 OneData(비밀번호\\이름\\전화번호\\주소)를 받아온다.
+- 그 후, specialKey(\\)로 split하여 각 위치에 맞는 정보(이름, 전화번호, 주소)를 가져온다.
+- 그 다음, setText() 함수를 통해 각 위치에 맞는 정보의 값으로 TextView의 텍스트를 설정해준다.
+- backImageButton(뒤로 가기 버튼) 클릭시 처리 : 
+  * MyPageActivity(마이페이지 화면)에서 ThirdActivity(세번째 화면)로 intent 넘기기
 
-
-
-
-    
-
-
-
-- View을 상속한 여러가지 위젯을 사용하여 화면을 구성(기능에 맞는 위젯 선택하여 구성)
-  View Group을 상속한 위젯 ListView, GridView, AdapterView, ToolBar 등
-  Text View을 상속한 CheckBox, Switch, ToggleButton, RadioButton 등
-  ImageView, ImageButton 등
-
-* 과제 제출시에는 이캠퍼스 개인과제 제출 페이지에서 구현내용과 실행환경(Readme.txt 파일)을
-  자세하게 설명하고 소스 파일은 압축(ZIP)하여 등록
-* Readme.txt 파일에는 SDK 버전(Android 버전 12)을 기재하고 
-  구현된 기능을 간략하게 설명하고 그외 앱 실행 환경 및 참고할 내용이 있다면 기재
-
-* 각페이지 구성시에 View을 상속한 여러가지 위젯을 사용하여 화면을 구성
-  (기능에 맞는 위젯 선택하여 구성)
-   ListView, GridView, AdapterView, ToolBar, Text View, CheckBox, Switch, 
-   ToggleButton, RadioButton, ImageView, ImageButton 등
+### 5. 상품 리스트 화면에서 RecyclerView와 함께 사용되는 파일
+#### item_product.xml : 상품 리스트의 한 item을 그려주는 xml 파일
+#### Product.java : 상품 이미지와 상품명을 getter/setter 해주는 파일
+#### ProductAdapter.java, ViewHolderProduct.java : RecyclerView를 구성하기 위한 파일
